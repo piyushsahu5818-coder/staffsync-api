@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: staffsync
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGO_URI
+        sync: false        # paste your MongoDB Atlas connection string in the Render dashboard
+      - key: JWT_SECRET
+        generateValue: true
+      - key: REGISTRATION_CODE
+        sync: false        # choose a code that HR/manager sign-ups must enter

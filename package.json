@@ -1,0 +1,12 @@
+{
+  "name": "staffsync",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install-all": "npm --prefix server install && npm --prefix client install",
+    "dev": "echo Run 'npm run dev' separately inside server/ and client/ (see README)",
+    "build": "npm --prefix server install && npm --prefix client install --include=dev && npm --prefix client run build",
+    "start": "node server/server.js"
+  },
+  "engines": { "node": ">=18" }
+}

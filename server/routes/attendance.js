@@ -1,0 +1,10 @@
+const r = require("express").Router();
+const c = require("../controllers/attendanceController");
+const { verifyJWT, authorize } = require("../middleware/auth");
+const { wrap } = require("../middleware/error");
+r.use(verifyJWT);
+r.post("/check-in", wrap(c.checkIn));
+r.post("/check-out", wrap(c.checkOut));
+r.get("/mine", wrap(c.mine));
+r.get("/", authorize("hr"), wrap(c.all));
+module.exports = r;

@@ -1,0 +1,11 @@
+const r = require("express").Router();
+const c = require("../controllers/trainingController");
+const { verifyJWT, authorize } = require("../middleware/auth");
+const { wrap } = require("../middleware/error");
+r.use(verifyJWT);
+r.get("/", wrap(c.list));
+r.post("/", authorize("manager", "hr"), wrap(c.create));
+r.post("/:id/enroll", wrap(c.enroll));
+r.post("/:id/unenroll", wrap(c.leave));
+r.delete("/:id", authorize("manager", "hr"), wrap(c.remove));
+module.exports = r;
